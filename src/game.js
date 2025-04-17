@@ -15,8 +15,9 @@ export default class Game extends Phaser.Scene
     create()
     {
         const map = this.make.tilemap({key: 'desert'})
-        const Outside = map.addTilesetImage('CuteRPG_Desert_Outside','Outside'); 
-        const Inside = map.addTilesetImage('CuteRPG_Desert_Inside','Inside'); 
+        const Outside = map.addTilesetImage('CuteRPG_Desert_Outside','Outside')
+        const OutsideNoCollide = map.addTilesetImage('CuteRPG_Desert_Outside_NoCollide','OutsideNoCollide')
+        const Inside = map.addTilesetImage('CuteRPG_Desert_Inside','Inside')
         const Tree = map.addTilesetImage('Trees+','trees')
         const Sand = map.addTilesetImage('Serene_Village_32x32','sand')
         
@@ -33,8 +34,8 @@ export default class Game extends Phaser.Scene
         map.createLayer("sand_area", [Inside, Sand], 0, 0)
         map.createLayer("sticks", Outside, 0, 0)
         map.createLayer("sticks_item", Outside, 0, 0)
-        const moundLayer = map.createLayer("mound", [ Outside, Inside], 0, 0)
-        const mound2Layer = map.createLayer("mound2", Outside, 0, 0)
+        const moundLayer = map.createLayer("mound", [ Outside, Inside, OutsideNoCollide], 0, 0)
+        const mound2Layer = map.createLayer("mound2", [Outside, OutsideNoCollide], 0, 0)
         map.createLayer("mound_item", [Outside, Inside], 0, 0)
 
         wallsLayer.setCollisionByProperty({ collides: true })
